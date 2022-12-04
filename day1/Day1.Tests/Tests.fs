@@ -1,17 +1,12 @@
 namespace Day1.Tests
 
-open System
-open Microsoft.VisualStudio.TestTools.UnitTesting
-open Day1
+open NUnit.Framework
 
-[<TestClass>]
+[<TestFixture>]
 type TestClass() =
 
-    [<TestMethod>]
-    member this.TestMethodPassing() = Assert.IsTrue(true)
-
-    [<TestMethod>]
-    member this.TestDAta() =
+    [<Test>]
+    member this.TestData() =
         let test =
             """
         1000
@@ -29,4 +24,4 @@ type TestClass() =
 
         10000"""
 
-        Assert.Equals(24000, test |> Day1.Main.caloriesList)
+        Assert.AreEqual(24000, test |> Day1.Main.caloriesList |> Seq.max)
