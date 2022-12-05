@@ -37,6 +37,18 @@ let day3_part2_result =
 
 printf "[*] Day3 (part2) : %d\n" day3_part2_result
 
+let day4_result =
+    File.ReadAllText "../../../day4.realdata.txt"
+    |> Day4.Part1.solve
+
+printf "[*] Day4 : %d\n" day4_result
+
+let day4_part2_result =
+    File.ReadAllText "../../../day4.realdata.txt"
+    |> Day4.Part2.solve
+
+printf "[*] Day4 (part2): %d\n" day4_part2_result
+
 setForeground Colors.Yellow
 printf "Premere invio per terminare"
 let c = System.Console.ReadLine 

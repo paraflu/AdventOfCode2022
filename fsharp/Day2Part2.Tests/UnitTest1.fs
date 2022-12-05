@@ -1,4 +1,4 @@
-module Day3.Tests
+module Day2Part2.Tests
 
 open NUnit.Framework
 

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="day4.realdata.txt" />
     <Content Include="day3_part2.realdata.txt" />
     <Compile Include="AnsiColor.fs" />
     <None Include="day3.realdata.txt" />
@@ -15,13 +16,12 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
 
-  <ItemGroup />
-
   <ItemGroup>
     <ProjectReference Include="..\Day2Part2\Day2_part2.fsproj" />
     <ProjectReference Include="..\Day2\Day2.fsproj" />
     <ProjectReference Include="..\Day1\Day1.fsproj" />
     <ProjectReference Include="..\Day3\Day3.fsproj" />
+    <ProjectReference Include="..\Day4\Day4.fsproj" />
   </ItemGroup>
 
 </Project>
