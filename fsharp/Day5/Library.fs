@@ -18,10 +18,10 @@ module List =
          [ for i in 1 .. len -> action ]
 
 module Part1 =
-
     let tap action value =
         action value
         value
+
 
     type Crate(tag: string) =
         
@@ -110,7 +110,6 @@ module Part1 =
             |> List.transpose
             |> (fun l -> 
                         l |> List.iteri print
-                        printf "\t\t"
                         [ 1 .. colNo ]
                         |> List.iter (fun idx -> printf " %d  \t" idx)
 
@@ -173,21 +172,19 @@ module Part1 =
         cmd.Split("\r\n")
         |> Seq.map parseCommand
 
+    let crateMover9000  (holder:CrateHolder) (cmd:Command) =
+        //printCrateHolder holder
+        //printf "move %d from %d to %d" cmd.move cmd.src cmd.dest
+        //printStack holder.[cmd.src]
+        holder.[cmd.src] 
+        |> trimRight 
+        |> List.take cmd.move
+        |> List.rev
+        //|> tap (fun s -> printf "crateMover\n-->  "; printStack s ; printf "<-- \n")
 
-    let execCommand (holder:CrateHolder) (cmd:Command) : CrateHolder =
+    let execCommand (holder:CrateHolder) mover (cmd:Command): CrateHolder=
 
-        //printf "execCommand Start\n"; printCrateHolder holder 
-        //printf "now move from %d to %d len %d\n" cmd.src cmd.dest cmd.move
-        let toMove = holder.[cmd.src] 
-                     //|> tap printStack
-                     |> trimRight 
-                     //|> tap printStack
-                     |> List.take cmd.move
-                     |> List.rev
-                     //|> tap printStack
-
-                    //|> tap (fun c -> printf "tomove\n"; c |> List.iteri (fun i el -> printf "%d) %s\n" i el.ToString))
-        //printf "\nexecCommand tomove\n"; printStack toMove
+        let toMove = mover holder cmd
 
         let result =
             holder 
@@ -234,10 +231,10 @@ module Part1 =
                       //|> tap (fun sc -> sc |> Seq.map string |> String.concat "" |> printf "getHeader result %s")
       
 
-    let rec reduce (c:list<Command>) (crates:CrateHolder): CrateHolder =
+    let rec reduce (c:list<Command>) mover (crates:CrateHolder) : CrateHolder =
         match c with
-        | head :: tail -> let newElm = execCommand crates head
-                          reduce tail newElm
+        | head :: tail -> let newElm = execCommand crates mover head 
+                          reduce tail mover newElm 
         | [] -> crates
         
     let getSpecFromContent (content:string): list<string> * list<string> =
@@ -266,9 +263,32 @@ module Part1 =
         let initialState = spec |> List.toArray |> parse
         let commandList = commandList |> List.map parseCommand
         
-        reduce commandList initialState
+        reduce commandList crateMover9000 initialState
 
 
 module Part2 =
-    let solve (content:string) = 
-        ""
+    open Part1
+
+    let crateMover9001 (holder:CrateHolder) (cmd:Command) =
+        holder.[cmd.src] 
+        |> trimRight 
+        |> List.take cmd.move
+        //|> List.rev << part 2
+
+    let solve (content: string) = 
+        //let contentList = content.Split("\r\n") |> Array.toList
+        //let spec = List.takeWhile (fun (row:string) -> match row.Trim() with
+        //                                                  | "" -> false
+        //                                                  | _ -> true) contentList 
+                           
+        //let initialState = spec |> List.toArray |> parse
+
+        //let commandList = (List.length spec |> (+) 1, contentList) 
+        //                    ||> List.skip 
+        //                    |> List.map parseCommand
+        let (spec, commandList) = getSpecFromContent content
+
+        let initialState = spec |> List.toArray |> parse
+        let commandList = commandList |> List.map parseCommand
+        
+        reduce commandList crateMover9001 initialState

@@ -55,6 +55,14 @@ let day5_result =
 
 day5_result |> Day5.Part1.getHeader |> Seq.map string |> String.concat ""|> printf "[*] Day5 : %s\n" 
 
+
+let day5_part2_result =
+    File.ReadAllText "../../../day5.realdata.txt"
+    |> Day5.Part2.solve
+
+day5_part2_result |> Day5.Part1.getHeader |> Seq.map string |> String.concat ""|> printf "[*] Day5 (part2) : %s\n" 
+
+
 setForeground Colors.Yellow
 printf "Premere invio per terminare"
 let c = System.Console.ReadLine 

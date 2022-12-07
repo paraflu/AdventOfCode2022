@@ -2,6 +2,7 @@ module Day5.Tests
 
 open NUnit.Framework
 open Day5.Part1
+open Day5.Part2
 
 let toString (s:Stack) = List.map (fun (x:Crate) -> x.Badge) s
 let simple c = c |> toString |> List.toSeq |> String.concat "" |> (fun s -> s.Trim())
@@ -71,7 +72,7 @@ let Test3 () =
     Assert.AreEqual(0, cmd.dest)
 
     let crates = initialState.Split("\r\n") |> parse 
-    let firstCommand = execCommand crates cmd
+    let firstCommand = execCommand crates crateMover9000 cmd
 
     
     Assert.AreEqual("DNZ", firstCommand.[0] |> simple)
@@ -94,29 +95,32 @@ let Test5 () =
  1   2   3 """
 
     let crates = initialState.Split("\r\n") |> parse 
+    let cmdExecutor = execCommand crates crateMover9000
     let firstCommand = 
         "move 1 from 2 to 1" 
         |> parseCommandList 
         |> Seq.head 
-        |> execCommand crates
+        |> cmdExecutor
         |> tap printCrateHolder
 
     Assert.AreEqual("DNZ", firstCommand.[0] |> simple)
     Assert.AreEqual("CM", firstCommand.[1] |> simple)
     Assert.AreEqual("P", firstCommand.[2] |> simple)
 
+    let cmdExecutor2 = execCommand firstCommand crateMover9000
+
     let secondCommand =  
         "move 3 from 1 to 3" 
         |> parseCommandList 
         |> Seq.head 
-        |> execCommand firstCommand
+        |> cmdExecutor2
         //|> tap printCrateHolder
 
     Assert.AreEqual("", secondCommand.[0] |> simple)
     Assert.AreEqual("CM", secondCommand.[1] |> simple)
-    Assert.AreEqual("DNZP", secondCommand.[2] |> simple)
+    Assert.AreEqual("ZNDP", secondCommand.[2] |> simple)
 
-    Assert.AreEqual(" CD", secondCommand |> getHeader |> Seq.toArray |> System.String)
+    Assert.AreEqual(" CZ", secondCommand |> getHeader |> Seq.toArray |> System.String)
 
 //[<Test>]
 //let TestNormalize () =
@@ -137,13 +141,15 @@ move 3 from 1 to 3" |> parseCommandList |> Seq.toList
 
  
         
-    let result = reduce cmd crates
+    let result = reduce cmd crateMover9000 crates  |> tap printCrateHolder
+
+
 
     Assert.AreEqual("", result.[0] |> simple)
     Assert.AreEqual("CM", result.[1] |> simple)
-    Assert.AreEqual("DNZP", result.[2] |> simple)
+    Assert.AreEqual("ZNDP", result.[2] |> simple)
 
-    Assert.AreEqual(" CD", result |> getHeader |> Seq.toArray |> System.String)
+    Assert.AreEqual(" CZ", result |> getHeader |> Seq.toArray |> System.String)
 
 
 [<Test>]
@@ -170,17 +176,56 @@ move 1 from 1 to 2"""
 
     Assert.AreEqual("NDP", initial |> solve_part1)
 
-    let step1 = (cmdList |> List.take 1, initial) ||> reduce 
+    let step1 = (cmdList |> List.take 1, crateMover9000, initial) |||> reduce 
     Assert.AreEqual("DCP", step1 |> solve_part1)
 
-    let step2 = (cmdList |> List.take 2, initial) ||> reduce 
+    let step2 = (cmdList |> List.take 2, crateMover9000, initial) |||> reduce 
     Assert.AreEqual(" CZ", step2 |> solve_part1)
 
-    let step3 = (cmdList |> List.take 3, initial) 
-                ||> reduce 
+    let step3 = (cmdList |> List.take 3, crateMover9000,initial) 
+                |||> reduce 
                 //|> tap printCrateHolder
     Assert.AreEqual("M Z", step3 |> solve_part1)
 
-    let step4 = (cmdList, initial) 
-                ||> reduce 
+    let step4 = (cmdList, crateMover9000, initial) 
+                |||> reduce 
     Assert.AreEqual("CMZ", step4 |> solve_part1)
+
+[<Test>]
+let TestPart2 () =
+    let fileContent = """    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
+
+move 1 from 2 to 1
+move 3 from 1 to 3
+move 2 from 2 to 1
+move 1 from 1 to 2"""
+
+    let (spec, commands) = getSpecFromContent fileContent
+
+    Assert.AreEqual(4, spec |> List.length)    
+    Assert.AreEqual(4, spec |> List.length)
+
+    let initial = spec |> List.toArray |> parse
+    let cmdList = commands |> List.map parseCommand
+
+    let solve_part1 x = x |> getHeader |> Seq.map string |> String.concat ""
+
+    Assert.AreEqual("NDP", initial |> solve_part1)
+
+    let step1 = (cmdList |> List.take 1, crateMover9001, initial) |||> reduce 
+    Assert.AreEqual("DCP", step1 |> solve_part1)
+
+    let step2 = (cmdList |> List.take 2, crateMover9001, initial) |||> reduce 
+    Assert.AreEqual(" CD", step2 |> solve_part1)
+
+    let step3 = (cmdList |> List.take 3, crateMover9001,initial) 
+                |||> reduce 
+                //|> tap printCrateHolder
+    Assert.AreEqual("C D", step3 |> solve_part1)
+
+    let step4 = (cmdList, crateMover9001, initial) 
+                |||> reduce 
+    Assert.AreEqual("MCD", step4 |> solve_part1)
