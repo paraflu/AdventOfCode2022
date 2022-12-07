@@ -25,3 +25,4 @@ type TestClass() =
         10000"""
 
         Assert.AreEqual(24000, test |> Day1.Main.caloriesList |> Seq.max)
+
