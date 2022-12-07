@@ -62,6 +62,14 @@ let day5_part2_result =
 
 day5_part2_result |> Day5.Part1.getHeader |> Seq.map string |> String.concat ""|> printf "[*] Day5 (part2) : %s\n" 
 
+let day6_result =
+    File.ReadAllText "../../../day6.realdata.txt"
+
+let (_, m) = Day6.Part1.get_marker day6_result 4 
+printf "[*] Day6 : %d\n" m
+let (_, m2) = Day6.Part1.get_marker day6_result 14 
+printf "[*] Day6 (part2): %d\n" m2
+
 
 setForeground Colors.Yellow
 printf "Premere invio per terminare"
