@@ -49,6 +49,12 @@ let day4_part2_result =
 
 printf "[*] Day4 (part2): %d\n" day4_part2_result
 
+let day5_result =
+    File.ReadAllText "../../../day5.realdata.txt"
+    |> Day5.Part1.solve
+
+day5_result |> Day5.Part1.getHeader |> Seq.map string |> String.concat ""|> printf "[*] Day5 : %s\n" 
+
 setForeground Colors.Yellow
 printf "Premere invio per terminare"
 let c = System.Console.ReadLine 

@@ -24,13 +24,22 @@ module Part1 =
         value
 
     type Crate(tag: string) =
+        
         let _tag =
             match tag.[0] with
             | '[' -> tag.Trim().Substring(1, 1)
             | _ -> tag
 
-        member this.ToString = Printf.sprintf "[%s] " _tag
-        member this.Badge = _tag
+        member this.ToString = match _tag with 
+                                | " " -> "    "
+                                | "?" -> "??? "
+                                | "x" -> "xxx "
+                                | x -> Printf.sprintf "[%s] " x
+
+        member this.Badge =  match _tag with
+                             | "?" 
+                             | "x" -> " "
+                             | x -> x
 
     type Stack = list<Crate>
 
@@ -38,65 +47,81 @@ module Part1 =
 
     let toString (c: Crate) = c.ToString
 
+    let filterEmpty list = List.filter (fun (c:Crate) -> match c.Badge.Trim() with
+                                                            | ""
+                                                            | "?"
+                                                            | "x" -> false
+                                                            | _ -> true) list
+
+    let padLeft el size li = 
+        match li |> List.length with
+        | len when len = size -> li
+        | x -> let filler = [1..size-x] 
+                          |> List.map (fun _ -> el) 
+               seq {li ;filler} |> List.concat
+
+    let padRight el size li =
+        match li |> List.length with
+        | len when len = size -> li
+        | x -> let filler = [1..size-x] 
+                          |> List.map (fun _ -> el) 
+               seq {filler;li} |> List.concat
+
+    let trimLeft (li:Stack) = 
+        li |> List.skipWhile (fun it -> match it.Badge with
+                                        | " " -> false
+                                        | _ -> true)
+    
+    let trimRight (li:Stack) = 
+        li 
+        |> List.rev
+        |> List.takeWhile (fun it -> match it.Badge with
+                                        | " " -> false
+                                        | _ -> true)
+        |> List.rev
+
+
     let normalizeLength (crateholder: CrateHolder) : CrateHolder =
         let maxSize =
             crateholder |> List.map List.length |> List.max
 
-        let make (maxSize: int) (l: Stack) : Stack =
-            match l |> List.length with
-            | x when x = maxSize -> l
-            | x ->
-                let filler =
-                    [ for i in 1 .. maxSize - x -> Crate("[ ]") ]
+        
+        //(make maxSize,crateholder) ||> List.map 
+        crateholder |> List.map (fun st -> (Crate(" "), maxSize, st) |||> padLeft )
 
-                seq {
-                    l
-                    filler
-                }
-                |> List.concat
-                //|> (fun x ->
-                //    x
-                //    |> List.map toString
-                //    //|> List.iter (fun s -> printf "%s" s)
-
-                //    x)
-
-        let fn = make maxSize
-        crateholder |> List.map fn
+    let printStack (s:Stack) = 
+        s
+        |> List.iteri (fun i x ->
+            match x.Badge with
+            | " " -> printf "... \t"
+            | _ -> printf "%s\t" x.ToString)
 
     let printCrateHolder (s: CrateHolder) =
         let print (rowId: int) (c: list<Crate>) =
-            printf "Row %d\t" rowId
-
-            c
-            |> List.iteri (fun i x ->
-                match x.Badge with
-                | " " when rowId = 0 -> printf " %s  \t" " "
-                | _ -> printf "%s\t" x.ToString)
-
+            //printf "Row %d\t" rowId
+            printStack c
             printf "\n"
 
-        let colNo = s.Length
+        let transposes = s |> normalizeLength
 
-        s
-        |> normalizeLength
-        |> List.transpose
-        |> (fun l ->
-            l |> List.iteri print
-            printf "\t\t"
+        let colNo = transposes.Length
 
-            [ 1 .. colNo ]
-            |> List.iter (fun idx -> printf " %d  \t" idx)
+        transposes        
+            |> List.transpose
+            |> (fun l -> 
+                        l |> List.iteri print
+                        printf "\t\t"
+                        [ 1 .. colNo ]
+                        |> List.iter (fun idx -> printf " %d  \t" idx)
 
-            printf "\n")
+                        printf "\n")
 
-    let parse (content: string) : CrateHolder =
-        content.Split "\n"
-        // filter empty rows
-        |> Seq.filter (fun s -> s.TrimEnd().Length > 0)
-        // chunk of 4 char
-        |> Seq.map (fun r ->
-            r.TrimEnd()
+
+        
+
+    let parse (content: array<string>) : CrateHolder =
+        let stringToStack (spec:string): Stack =
+            spec
             |> Seq.chunkBySize 4
             // convert string to Crate (padding empty token)
             |> Seq.map (fun s ->
@@ -104,16 +129,27 @@ module Part1 =
                 |> System.String
                 |> (fun s -> s.Trim().PadLeft(1))
                 |> Crate)
-            |> Seq.toList)
+            |> Seq.toList
+            //|> tap (fun s -> printf "from %s\n" spec
+            //                 printStack s
+            //                 printf "\n")
+
+        content
+        // filter empty rows
+        |> Seq.filter (fun s -> s.TrimEnd().Length > 0)
+        // chunk of 4 char
+        |> Seq.map stringToStack
         |> Seq.toList
         // remove last element (idx)
         |> List.removeLast<Stack> 1
         // normalize colums/row for transpose
         |> normalizeLength
-        |> List.transpose 
-        |> tap printCrateHolder
+        //|> tap (fun c -> printf "dopo normalize\n"; c |> List.iter (fun s -> printStack s; printf "\n"))
 
-    let solve (content: string) = 0
+        |> List.transpose 
+        //|> tap (fun c -> printf "parse\n"; printCrateHolder c)
+
+ 
 
     let processAction (action: string) = 0
 
@@ -126,44 +162,113 @@ module Part1 =
 
     let dec x = x - 1
 
-    let parseCommand (cmd: string) : seq<Command> =
+    let parseCommand (cmd:string): Command =
+        let tok = cmd.Split(" ")
 
+        { move = tok.[1] |> int 
+          src = tok.[3] |> int |> dec
+          dest = tok.[5] |> int |> dec }
+
+    let parseCommandList (cmd: string) : seq<Command> =
         cmd.Split("\r\n")
-        |> Seq.map (fun c ->
-            let tok = c.Split(" ")
+        |> Seq.map parseCommand
 
-            { move = tok.[1] |> int 
-              src = tok.[3] |> int |> dec
-              dest = tok.[5] |> int |> dec })
 
-    let filterEmpty list = List.filter (fun (c:Crate) -> match c.Badge.Trim() with
-                                                            | "" -> false
-                                                            | _ -> true) list
+    let execCommand (holder:CrateHolder) (cmd:Command) : CrateHolder =
 
-    let execCommand (crateHolder: CrateHolder) (c: Command) : CrateHolder =
-        let toMove: Stack =
-            crateHolder.[c.src].[0..c.move |> dec] |> List.rev
+        //printf "execCommand Start\n"; printCrateHolder holder 
+        //printf "now move from %d to %d len %d\n" cmd.src cmd.dest cmd.move
+        let toMove = holder.[cmd.src] 
+                     //|> tap printStack
+                     |> trimRight 
+                     //|> tap printStack
+                     |> List.take cmd.move
+                     |> List.rev
+                     //|> tap printStack
 
-        let empty:Stack = 
-            let emptyCrate = Crate(" ")
-            List.make c.move emptyCrate
+                    //|> tap (fun c -> printf "tomove\n"; c |> List.iteri (fun i el -> printf "%d) %s\n" i el.ToString))
+        //printf "\nexecCommand tomove\n"; printStack toMove
 
-        crateHolder
-        |> List.mapi (fun i s ->
-            match i with
-            | x when x = c.src -> 
-                let rest = s.[c.move..];
-                seq { empty; rest } |> List.concat
-            | x when x = c.dest ->
-                seq {
-                    toMove; s |> filterEmpty
-                }
-                |> List.concat
-            | _ -> s)
-
-   
-    let getFirst list = filterEmpty list |> List.head
+        let result =
+            holder 
+            |> List.mapi (fun i cl -> 
+                    match i with
+                    | x when x = cmd.src -> cl |> trimRight |> List.skip cmd.move
+                                            //|> tap (fun x -> 
+                                            //                printf "SRC\n"
+                                            //                x |> List.iteri (fun i el -> 
+                                            //                    printf "%d) %s " i el.ToString)
+                                            //                printf "\n")
+                    | x when x = cmd.dest -> (toMove, cl |> filterEmpty) ||> List.append 
+                                                //|> tap (fun x -> 
+                                                //            printf "DEST\n"
+                                                //            x |> List.iteri (fun i el -> 
+                                                //                printf "%d) %s " i el.ToString)
+                                                //            printf "\n"
+                                                //            )
+                    | _ -> cl |> trimRight)
+            //|> tap (fun c -> printf "after exec command\n"; printCrateHolder c)
+        let max = result |> List.map (fun x -> List.length x) |> List.max
+        let emptyCrate = Crate(" ")
+        result 
+        |> List.map (fun s ->  s 
+                                //|> trimRight 
+                                |> padRight emptyCrate max
+                                )
+        //|> tap (fun s -> printf "\nResult cmd: move %d from %d to %d\n" cmd.move cmd.src cmd.dest ; printCrateHolder s)
 
     let getHeader (c:CrateHolder):seq<char> =
-        c |> List.map getFirst |> List.map (fun x -> x.Badge.[0]) |> List.toSeq
+        //printf "getHeader\n"
+        //printCrateHolder c
+        //printf "--\n"
+        c |> List.map (fun s -> 
+                            let first = s |> trimRight 
+
+                            match first with
+                            | head :: tail -> 
+                                            match head.Badge with
+                                            | " " -> ' '
+                                            | x -> x.[0]
+                            | [] -> ' '
+                      ) |> List.toSeq
+                      //|> tap (fun sc -> sc |> Seq.map string |> String.concat "" |> printf "getHeader result %s")
+      
+
+    let rec reduce (c:list<Command>) (crates:CrateHolder): CrateHolder =
+        match c with
+        | head :: tail -> let newElm = execCommand crates head
+                          reduce tail newElm
+        | [] -> crates
         
+    let getSpecFromContent (content:string): list<string> * list<string> =
+        let contentList = content.Split("\r\n") |> Array.toList
+        let spec = List.takeWhile (fun (row:string) -> match row.Trim() with
+                                                          | "" -> false
+                                                          | _ -> true) contentList 
+                           
+        let commandList = (List.length spec |> (+) 1, contentList) 
+                            ||> List.skip 
+        (spec, commandList)
+        
+    let solve (content: string) = 
+        //let contentList = content.Split("\r\n") |> Array.toList
+        //let spec = List.takeWhile (fun (row:string) -> match row.Trim() with
+        //                                                  | "" -> false
+        //                                                  | _ -> true) contentList 
+                           
+        //let initialState = spec |> List.toArray |> parse
+
+        //let commandList = (List.length spec |> (+) 1, contentList) 
+        //                    ||> List.skip 
+        //                    |> List.map parseCommand
+        let (spec, commandList) = getSpecFromContent content
+
+        let initialState = spec |> List.toArray |> parse
+        let commandList = commandList |> List.map parseCommand
+        
+        reduce commandList initialState
+
+
+module Part2 =
+    let solve (content:string) = 
+        ""

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="day5.realdata.txt" />
     <Content Include="day4.realdata.txt" />
     <Content Include="day3_part2.realdata.txt" />
     <Compile Include="AnsiColor.fs" />
