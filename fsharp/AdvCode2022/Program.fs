@@ -1,12 +1,14 @@
 ﻿open System.IO
 open AnsiColor
 
+DllImports.enableVTMode() |> ignore
+
+setForeground Colors.Green
 let day1_result =
     File.ReadAllText "../../../day1.realdata.txt"
     |> Day1.Main.caloriesList
     |> Seq.max
 
-setForeground Colors.Green
 printf "[*] Day1 : %d\n" day1_result
 
 let day2_result =
@@ -88,15 +90,25 @@ let spaceNeeded = 30000000 - availableSpace
 sizes
 |> Map.values
 |> Seq.sort
-|> (fun s -> 
-            s |> Seq.iteri (fun i it -> printf "%d) %d\n" i it) 
-            s)
+//|> (fun s -> 
+//            s |> Seq.iteri (fun i it -> printf "%d) %d\n" i it) 
+//            s)
 |> Seq.filter (fun s -> s > spaceNeeded)
-|> (fun s -> 
-            s |> Seq.iteri (fun i it -> printf "%d) %d\n" i it) 
-            s)
+//|> (fun s -> 
+//            s |> Seq.iteri (fun i it -> printf "%d) %d\n" i it) 
+//            s)
 |> Seq.min
 |> printf "[*] Day 7 (part2): %d \n"
+
+let day8_result: Day8.Part1.Trees list =
+        File.ReadAllLines "../../../day8.realdata.txt"
+        |> Array.map (fun s -> s |> Seq.toList |> List.map int)
+        |> Array.toList
+
+Day8.Part1.visibleTrees day8_result  |> printf "[*] Day 8: %d\n" 
+
+Day8.Part1.getMaxScenicScore day8_result  |> printf "[*] Day 8 (part2): %d\n" 
+
 
 setForeground Colors.Yellow
 printf "Premere invio per terminare"

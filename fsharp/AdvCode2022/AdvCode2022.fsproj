@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="day8.realdata.txt" />
     <Content Include="day6.realdata.txt" />
     <Content Include="day7.realdata.txt" />
     <Content Include="day5.realdata.txt" />
