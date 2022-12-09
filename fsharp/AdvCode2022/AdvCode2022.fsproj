@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="day6.realdata.txt" />
+    <Content Include="day7.realdata.txt" />
     <Content Include="day5.realdata.txt" />
     <Content Include="day4.realdata.txt" />
     <Content Include="day3_part2.realdata.txt" />
@@ -25,6 +27,8 @@
     <ProjectReference Include="..\Day4\Day4.fsproj" />
     <ProjectReference Include="..\Day5\Day5.fsproj" />
     <ProjectReference Include="..\Day6\Day6.fsproj" />
+    <ProjectReference Include="..\Day7\Day7.fsproj" />
+    <ProjectReference Include="..\Day8\Day8.fsproj" />
   </ItemGroup>
 
 </Project>

@@ -71,6 +71,33 @@ let (_, m2) = Day6.Part1.get_marker day6_result 14
 printf "[*] Day6 (part2): %d\n" m2
 
 
+let day7_result =
+    File.ReadAllLines "../../../day7.realdata.txt"
+    |> Array.toList
+
+Day7.Part1.calculateSizes day7_result
+|> Map.values
+|> Seq.filter (fun s -> s < 100000)
+|> Seq.sum
+|> printf "[*] Day 7 : %d \n"
+
+let sizes = Day7.Part1.calculateSizes day7_result
+let availableSpace = 70000000 - sizes[["/"]]
+let spaceNeeded = 30000000 - availableSpace
+
+sizes
+|> Map.values
+|> Seq.sort
+|> (fun s -> 
+            s |> Seq.iteri (fun i it -> printf "%d) %d\n" i it) 
+            s)
+|> Seq.filter (fun s -> s > spaceNeeded)
+|> (fun s -> 
+            s |> Seq.iteri (fun i it -> printf "%d) %d\n" i it) 
+            s)
+|> Seq.min
+|> printf "[*] Day 7 (part2): %d \n"
+
 setForeground Colors.Yellow
 printf "Premere invio per terminare"
 let c = System.Console.ReadLine 

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\a.forlin\.nuget\packages\microsoft.fsharplu\0.11.7\contentFiles\any\netstandard2.0\Sysprep.ps1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.FSharpLu" Version="0.11.7" />
+  </ItemGroup>
+
+</Project>

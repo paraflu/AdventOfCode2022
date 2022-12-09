@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="c29310ab-15b2-45f7-b9d6-af9ac5ca9df5" name="a.forlin@PC-AFORLIN01 2022-12-09 10:00:32" runUser="DATASERVICES\a.forlin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2022-12-09T10:00:32.7653656+01:00" queuing="2022-12-09T10:00:32.7653659+01:00" start="2022-12-09T10:00:31.4661736+01:00" finish="2022-12-09T10:00:32.8170118+01:00" />
+  <TestSettings name="default" id="ea8b2ee0-c739-4144-ba94-ee9993a28937">
+    <Deployment runDeploymentRoot="a.forlin_PC-AFORLIN01_2022-12-09_10_00_32" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="63bdd946-3b65-422a-aa4b-859127a5e89d" testId="bdbd99bf-970c-9b2a-6017-038eb814b9e1" testName="TestCase4" computerName="PC-AFORLIN01" duration="00:00:00.0005910" startTime="2022-12-09T10:00:32.6731586+01:00" endTime="2022-12-09T10:00:32.6737491+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="63bdd946-3b65-422a-aa4b-859127a5e89d" />
+    <UnitTestResult executionId="98725dca-316c-4795-82ea-f53a5bf39079" testId="f1c8d082-c7e5-7a0e-0d6e-f7ec6d41ab4f" testName="TestCase5" computerName="PC-AFORLIN01" duration="00:00:00.0005599" startTime="2022-12-09T10:00:32.6740896+01:00" endTime="2022-12-09T10:00:32.6746494+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98725dca-316c-4795-82ea-f53a5bf39079" />
+    <UnitTestResult executionId="8bc45c3f-d560-4917-b3fb-5288a2546da8" testId="d941cd3d-57ce-4a42-4df9-51e16f074423" testName="TestCase31" computerName="PC-AFORLIN01" duration="00:00:00.0143380" startTime="2022-12-09T10:00:32.6529942+01:00" endTime="2022-12-09T10:00:32.6673320+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8bc45c3f-d560-4917-b3fb-5288a2546da8" />
+    <UnitTestResult executionId="5d5d2bd9-b114-49f4-8828-48410e82ce83" testId="b17a530e-59e4-b652-fc3b-8fb34def830b" testName="TestCase3" computerName="PC-AFORLIN01" duration="00:00:00.0009970" startTime="2022-12-09T10:00:32.6519117+01:00" endTime="2022-12-09T10:00:32.6529080+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d5d2bd9-b114-49f4-8828-48410e82ce83" />
+    <UnitTestResult executionId="bc3ffc15-4807-4a69-823f-75ec97489edf" testId="782714e3-edee-8246-f5da-ec8f6780b336" testName="TestCase6" computerName="PC-AFORLIN01" duration="00:00:00.0005890" startTime="2022-12-09T10:00:32.6750788+01:00" endTime="2022-12-09T10:00:32.6756680+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc3ffc15-4807-4a69-823f-75ec97489edf" />
+    <UnitTestResult executionId="87976f6d-f9c4-49b6-9de5-9867377465dc" testId="dac069f5-b504-74b0-e8a5-80977ef344e4" testName="TestCase2" computerName="PC-AFORLIN01" duration="00:00:00.0014060" startTime="2022-12-09T10:00:32.6504314+01:00" endTime="2022-12-09T10:00:32.6518376+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="87976f6d-f9c4-49b6-9de5-9867377465dc" />
+    <UnitTestResult executionId="0d483b00-dc9b-4985-a530-36f6bb0a975b" testId="d37802ed-32c7-4b50-3d5a-73c3032ca9e1" testName="TestPriority" computerName="PC-AFORLIN01" duration="00:00:00.0002960" startTime="2022-12-09T10:00:32.6872988+01:00" endTime="2022-12-09T10:00:32.6875952+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0d483b00-dc9b-4985-a530-36f6bb0a975b" />
+    <UnitTestResult executionId="4e4c0130-6c44-46e9-9063-356fef5e1af2" testId="265fd486-b691-4e19-8997-78e21801d5f1" testName="TestCase32" computerName="PC-AFORLIN01" duration="00:00:00.0004970" startTime="2022-12-09T10:00:32.6722775+01:00" endTime="2022-12-09T10:00:32.6727752+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e4c0130-6c44-46e9-9063-356fef5e1af2" />
+    <UnitTestResult executionId="2dd6f12c-ea85-4489-b2ad-e1448297079a" testId="48cf5fa4-d8a2-fc7c-5468-0aded544fd98" testName="TestCase1" computerName="PC-AFORLIN01" duration="00:00:00.0406409" startTime="2022-12-09T10:00:32.6075628+01:00" endTime="2022-12-09T10:00:32.6481176+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2dd6f12c-ea85-4489-b2ad-e1448297079a" />
+    <UnitTestResult executionId="28039b3a-06c9-41f6-95f7-85ba3860d907" testId="0238293d-3d83-d2bc-dedb-6c2eb99336df" testName="TestGame" computerName="PC-AFORLIN01" duration="00:00:00.0043570" startTime="2022-12-09T10:00:32.6780843+01:00" endTime="2022-12-09T10:00:32.6824420+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="28039b3a-06c9-41f6-95f7-85ba3860d907" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="TestGame" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="0238293d-3d83-d2bc-dedb-6c2eb99336df">
+      <Execution id="28039b3a-06c9-41f6-95f7-85ba3860d907" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestGame" />
+    </UnitTest>
+    <UnitTest name="TestCase3" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="b17a530e-59e4-b652-fc3b-8fb34def830b">
+      <Execution id="5d5d2bd9-b114-49f4-8828-48410e82ce83" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase3" />
+    </UnitTest>
+    <UnitTest name="TestCase5" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="f1c8d082-c7e5-7a0e-0d6e-f7ec6d41ab4f">
+      <Execution id="98725dca-316c-4795-82ea-f53a5bf39079" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase5" />
+    </UnitTest>
+    <UnitTest name="TestPriority" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="d37802ed-32c7-4b50-3d5a-73c3032ca9e1">
+      <Execution id="0d483b00-dc9b-4985-a530-36f6bb0a975b" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestPriority" />
+    </UnitTest>
+    <UnitTest name="TestCase4" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="bdbd99bf-970c-9b2a-6017-038eb814b9e1">
+      <Execution id="63bdd946-3b65-422a-aa4b-859127a5e89d" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase4" />
+    </UnitTest>
+    <UnitTest name="TestCase2" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="dac069f5-b504-74b0-e8a5-80977ef344e4">
+      <Execution id="87976f6d-f9c4-49b6-9de5-9867377465dc" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase2" />
+    </UnitTest>
+    <UnitTest name="TestCase6" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="782714e3-edee-8246-f5da-ec8f6780b336">
+      <Execution id="bc3ffc15-4807-4a69-823f-75ec97489edf" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase6" />
+    </UnitTest>
+    <UnitTest name="TestCase31" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="d941cd3d-57ce-4a42-4df9-51e16f074423">
+      <Execution id="8bc45c3f-d560-4917-b3fb-5288a2546da8" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase31" />
+    </UnitTest>
+    <UnitTest name="TestCase1" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="48cf5fa4-d8a2-fc7c-5468-0aded544fd98">
+      <Execution id="2dd6f12c-ea85-4489-b2ad-e1448297079a" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase1" />
+    </UnitTest>
+    <UnitTest name="TestCase32" storage="d:\private\adventofcode2022\fsharp\day3.tests\bin\debug\net7.0\day3.tests.dll" id="265fd486-b691-4e19-8997-78e21801d5f1">
+      <Execution id="4e4c0130-6c44-46e9-9063-356fef5e1af2" />
+      <TestMethod codeBase="D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Day3.Tests" name="TestCase32" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="bdbd99bf-970c-9b2a-6017-038eb814b9e1" executionId="63bdd946-3b65-422a-aa4b-859127a5e89d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f1c8d082-c7e5-7a0e-0d6e-f7ec6d41ab4f" executionId="98725dca-316c-4795-82ea-f53a5bf39079" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d941cd3d-57ce-4a42-4df9-51e16f074423" executionId="8bc45c3f-d560-4917-b3fb-5288a2546da8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b17a530e-59e4-b652-fc3b-8fb34def830b" executionId="5d5d2bd9-b114-49f4-8828-48410e82ce83" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="782714e3-edee-8246-f5da-ec8f6780b336" executionId="bc3ffc15-4807-4a69-823f-75ec97489edf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dac069f5-b504-74b0-e8a5-80977ef344e4" executionId="87976f6d-f9c4-49b6-9de5-9867377465dc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d37802ed-32c7-4b50-3d5a-73c3032ca9e1" executionId="0d483b00-dc9b-4985-a530-36f6bb0a975b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="265fd486-b691-4e19-8997-78e21801d5f1" executionId="4e4c0130-6c44-46e9-9063-356fef5e1af2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48cf5fa4-d8a2-fc7c-5468-0aded544fd98" executionId="2dd6f12c-ea85-4489-b2ad-e1448297079a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0238293d-3d83-d2bc-dedb-6c2eb99336df" executionId="28039b3a-06c9-41f6-95f7-85ba3860d907" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="10" executed="10" passed="10" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.2.0.0: Test execution started&#xD;
+Running all tests in D:\private\AdventOfCode2022\fsharp\Day3.Tests\bin\Debug\net7.0\Day3.Tests.dll&#xD;
+   NUnit3TestExecutor discovered 10 of 10 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.2.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
